@@ -21,3 +21,15 @@ function reverseStringLoop(str) {
   return reversed;
 }
 console.log(reverseStringLoop("hello"));
+
+// Using Recursion : arr.slice(1) return 1 to next element.
+function sumArrayRecursive(arr) {
+  if (arr.length === 0) {
+    return 0;
+  } else {
+    return arr[0] + sumArrayRecursive(arr.slice(1));
+  }
+}
+const arr = [1, 2, 3, 4, 5];
+const result = sumArrayRecursive(arr);
+console.log(result);
