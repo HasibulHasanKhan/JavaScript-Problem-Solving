@@ -1,0 +1,108 @@
+Here’s a JavaScript function to deep clone an object:
+
+1. Using JSON.parse(JSON.stringify(obj)) (Simple but Limited)
+javascript
+Copy
+Edit
+function deepClone(obj) {
+    return JSON.parse(JSON.stringify(obj));
+}
+
+// Example usage:
+const original = { name: "Alice", age: 25, details: { city: "New York", country: "USA" } };
+const clone = deepClone(original);
+
+clone.details.city = "Los Angeles"; 
+
+console.log(original.details.city); // Output: "New York" (original remains unchanged)
+console.log(clone.details.city); // Output: "Los Angeles"
+✅ Pros:
+
+Simple and fast for basic objects.
+❌ Cons:
+
+Loses functions, undefined, special objects (Date, Map, Set, etc.)`.
+2. Using structuredClone() (Best for Modern Browsers)
+javascript
+Copy
+Edit
+function deepCloneStructured(obj) {
+    return structuredClone(obj);
+}
+
+// Example usage:
+const original = { name: "Alice", birthdate: new Date(), items: new Set([1, 2, 3]) };
+const clone = deepCloneStructured(original);
+
+console.log(clone); 
+✅ Pros:
+
+Supports Date, Set, Map, ArrayBuffer.
+Modern approach (built-in).
+❌ Cons:
+
+Not supported in older browsers.
+3. Using lodash.cloneDeep() (Most Reliable)
+javascript
+Copy
+Edit
+// Install lodash: npm install lodash
+const _ = require('lodash');
+
+function deepCloneLodash(obj) {
+    return _.cloneDeep(obj);
+}
+
+// Example usage:
+const original = { name: "Alice", data: new Map([[1, "one"]]) };
+const clone = deepCloneLodash(original);
+
+console.log(clone);
+✅ Pros:
+
+Handles functions, Date, Map, Set, RegExp`, etc.
+❌ Cons:
+
+Requires an external library.
+4. Using Recursion (Custom Implementation)
+javascript
+Copy
+Edit
+function deepCloneRecursive(obj) {
+    if (obj === null || typeof obj !== "object") return obj;
+    
+    if (obj instanceof Date) return new Date(obj);
+    if (obj instanceof Array) return obj.map(deepCloneRecursive);
+    if (obj instanceof Map) return new Map([...obj.entries()].map(([k, v]) => [k, deepCloneRecursive(v)]));
+    if (obj instanceof Set) return new Set([...obj].map(deepCloneRecursive));
+
+    let clonedObj = {};
+    for (let key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            clonedObj[key] = deepCloneRecursive(obj[key]);
+        }
+    }
+    return clonedObj;
+}
+
+// Example usage:
+const original = { name: "Alice", data: new Map([[1, "one"]]), birthdate: new Date() };
+const clone = deepCloneRecursive(original);
+
+console.log(clone);
+✅ Pros:
+
+Supports deep cloning without external libraries.
+❌ Cons:
+
+Complex compared to lodash.cloneDeep().
+Best Approach?
+Method	Supports Functions?	Supports Date/Map/Set?	External Library?	Performance
+JSON.parse(JSON.stringify())	❌ No	❌ No	❌ No	✅ Fast
+structuredClone()	❌ No	✅ Yes	❌ No	✅ Fast
+lodash.cloneDeep()	✅ Yes	✅ Yes	✅ Yes	✅ Fast
+Recursive Function	✅ Yes	✅ Yes	❌ No	⚠️ Slower
+Conclusion
+For basic objects → Use JSON.parse(JSON.stringify(obj)).
+For complex structures → Use structuredClone() (modern browsers) or lodash.cloneDeep().
+For full control → Write a recursive function.
