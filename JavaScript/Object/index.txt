@@ -1,0 +1,84 @@
+How to Add Number Keys from an Array to an Object in JavaScript
+If you want to add number keys from an array into an object, JavaScript will automatically convert them into string keys. You can use a loop to assign values dynamically.
+
+🔹 Example 1: Adding Numbers as Keys
+
+let numbers = [10, 20, 30, 40]; // Array of numbers
+let obj = {};
+
+// Adding each number as a key with a default value
+for (let num of numbers) {
+    obj[num] = `Value of ${num}`;
+}
+
+console.log(obj);
+🔹 Output:
+
+
+{ '10': 'Value of 10', '20': 'Value of 20', '30': 'Value of 30', '40': 'Value of 40' }
+📌 The numbers become string keys automatically ("10", "20", "30", "40").
+
+🔹 Example 2: Assigning Incremental Values
+If you want the values to be sequential numbers, you can do this:
+
+
+let numbers = [1, 5, 9, 15];
+let obj = {};
+
+numbers.forEach((num, index) => {
+    obj[num] = index + 1; // Assigning index-based values
+});
+
+console.log(obj);
+🔹 Output:
+
+
+{ '1': 1, '5': 2, '9': 3, '15': 4 }
+📌 The array elements become keys, and their position (index + 1) becomes the value.
+
+🔹 Example 3: Using an Array of Key-Value Pairs
+If your array contains pairs of keys and values, you can use Object.fromEntries():
+
+
+let keyValueArray = [[100, "A"], [200, "B"], [300, "C"]];
+let obj = Object.fromEntries(keyValueArray);
+
+console.log(obj);
+🔹 Output:
+
+
+{ '100': 'A', '200': 'B', '300': 'C' }
+📌 Each sub-array [key, value] becomes an entry in the object.
+
+🔹 Example 4: Creating an Object with Default Values
+
+let keys = [101, 102, 103];
+let obj = Object.fromEntries(keys.map(key => [key, "default"]));
+
+console.log(obj);
+🔹 Output:
+
+
+{ '101': 'default', '102': 'default', '103': 'default' }
+📌 This method quickly maps an array to an object with default values.
+
+🔹 Example 5: Using reduce() for Compact Code
+
+let arr = [11, 22, 33, 44];
+
+let obj = arr.reduce((acc, num) => {
+    acc[num] = `Data for ${num}`;
+    return acc;
+}, {});
+
+console.log(obj);
+🔹 Output:
+
+
+{ '11': 'Data for 11', '22': 'Data for 22', '33': 'Data for 33', '44': 'Data for 44' }
+📌 reduce() is a clean way to transform an array into an object.
+
+💡 Summary
+✅ Objects automatically convert number keys to strings
+✅ You can use loops, Object.fromEntries(), reduce(), or map()
+✅ Use Map instead of an object if you want actual numeric keys

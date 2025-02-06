@@ -11,3 +11,5 @@ function findMissingNumber(arr) {
 const arr = [1, 2, 4, 5, 6];
 const n = 6;
 console.log(findMissingNumber(arr, n));
+
+// Alternative Approach: Using XOR (O(N))
