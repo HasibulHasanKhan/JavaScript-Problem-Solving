@@ -14,6 +14,20 @@ function countOccurrences(arr) {
 const array = [1, 8, 8, 2, 1, 2, 7, 4, 4, 3, 3, 4, 4, 4, 4];
 console.log(countOccurrences(array));
 
+// Approach 2: Using Map (O(N))
+
+function countOccurrencesMap(arr) {
+  let frequencyMap = new Map();
+
+  for (let num of arr) {
+    frequencyMap.set(num, (frequencyMap.get(num) || 0) + 1);
+  }
+
+  return Object.fromEntries(frequencyMap); // Convert Map to object for easy viewing
+}
+
+console.log(countOccurrencesMap(array));
+
 // Approach 3: Using reduce() (Functional Programming)
 
 function CountOccurrencesReduce(arr) {
