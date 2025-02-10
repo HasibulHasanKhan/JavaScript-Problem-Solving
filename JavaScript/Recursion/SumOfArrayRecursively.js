@@ -1,3 +1,5 @@
+// Implement a function that returns the sum of an array using recursion.
+
 function sumArray(arr, index = 0) {
   if (index === arr.length) return 0;
 
