@@ -66,3 +66,37 @@ console.log(user);
 
 const hasEven = numbers.some((num) => num % 2 === 0);
 console.log(hasEven);
+
+// every - checking if all elements match : true | false.
+const allEven = numbers.every((num) => num % 2 === 0);
+console.log(allEven);
+
+//function composition :
+
+function add(x) {
+  return x + 1;
+}
+
+function multiplys(x) {
+  return x * 2;
+}
+
+function compose(multiplys, add) {
+  return function (x) {
+    return multiplys(add(x));
+  };
+}
+
+const addThenMultiply = compose(multiplys, add);
+console.log(addThenMultiply(2));
+
+// arrow function way :
+// const add = x => x + 1;
+// const multiply = x => x * 2;
+
+// const compose = (f, g) => x => f(g(x));
+
+// const addThenMultiply = compose(multiply, add);
+// console.log(addThenMultiply(5)); // (5 + 1) * 2 = 12
+
+//
