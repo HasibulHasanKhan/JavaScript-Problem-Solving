@@ -1,7 +1,16 @@
-function replaceAllOccurrencesSplitJoin(str, target, replacement) {
-  return str.split(target).join(replacement);
+for (
+  let i = 0;
+  console.log(i), i < 5;
+  console.log(i), i++, console.log(i), console.log("\n")
+) {
+  console.log(i);
 }
+console.log("\n");
 
-console.log(
-  replaceAllOccurrencesSplitJoin("Hello world! Hello everyone!", "Hello", "Hi")
-);
+for (
+  let i = 0;
+  console.log(i), i < 5;
+  console.log(i), ++i, console.log(i), console.log("\n")
+) {
+  console.log(i);
+}

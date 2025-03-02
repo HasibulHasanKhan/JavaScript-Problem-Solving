@@ -136,7 +136,7 @@ customForEach(number, (num, index) => {
 function customMap(arr, cb) {
   let result = [];
   for (let i = 0; i < arr.length; i++) {
-    result.push(cb[i], i, arr);
+    result.push(cb(arr[i], i, arr));
   }
   return result;
 }
