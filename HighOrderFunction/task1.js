@@ -99,4 +99,47 @@ console.log(addThenMultiply(2));
 // const addThenMultiply = compose(multiply, add);
 // console.log(addThenMultiply(5)); // (5 + 1) * 2 = 12
 
-//
+// Currying transforms a function that takes multiple arguments into a series of functions.
+
+function curriedAdd(a) {
+  return function (b) {
+    return function (c) {
+      return a + b + c;
+    };
+  };
+}
+
+console.log(curriedAdd(1)(2)(3));
+
+// Partial a variation of currying where some arguments are preset :
+
+const multiply2 = (a, b) => a * b;
+const double = multiply2.bind(null, 2); // bind return the function .
+console.log(double(3));
+
+// Custom forEach() implementation :
+
+function customForEach(arr, callback) {
+  for (let i = 0; i < arr.length; i++) {
+    callback(arr[i], i, arr);
+  }
+}
+
+const number = [1, 2, 3];
+
+customForEach(number, (num, index) => {
+  console.log(`Index: ${index}, Value: ${num}`);
+});
+
+// custom map() implementation :
+
+function customMap(arr, cb) {
+  let result = [];
+  for (let i = 0; i < arr.length; i++) {
+    result.push(cb[i], i, arr);
+  }
+  return result;
+}
+const number2 = [1, 2, 3];
+const res = customMap(number2, (num) => num * 3);
+console.log(res);
