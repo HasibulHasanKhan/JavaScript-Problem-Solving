@@ -4,12 +4,13 @@ async function fetchSequentially(url1, url2) {
   try {
     // First asynchronous call
     let response1 = await fetch(url1);
-    let data1 = await response1.json();
-    console.log(data1);
+    let data1 = response1.body;
+    // let data1 = await response1.json();
+    console.log("First API Response:", data1);
     // Second asynchronous call
     let response2 = await fetch(url2);
     let data2 = await response2.json();
-    console.log(data2);
+    console.log("Second API Response:", data2);
   } catch (err) {
     console.log(err.message);
   }
